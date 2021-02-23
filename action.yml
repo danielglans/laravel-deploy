@@ -19,6 +19,9 @@ inputs:
     owner: 
         description: 'Deploy owner'
         required: true
+    group: 
+        description: 'Deploy group'
+        required: true
 
 runs:
     using: 'docker'
@@ -28,3 +31,4 @@ runs:
         -   ${{ inputs.host }}
         -   ${{ inputs.path }}
         -   ${{ inputs.owner }}
+        -   ${{ inputs.group }}
