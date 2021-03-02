@@ -41,6 +41,7 @@ then
 	
 	ssh -i /root/.ssh/id_rsa -t $1@$2 "cd $3 && php artisan cache:clear"
 	ssh -i /root/.ssh/id_rsa -t $1@$2 "cd $3 && php artisan config:cache"
+	ssh -i /root/.ssh/id_rsa -t $1@$2 "cd $3 && php artisan queue:restart"
 
 	echo $'\n' "------ CONGRATS! DEPLOY SUCCESSFUL!!! ---------" $'\n'
 	exit 0
