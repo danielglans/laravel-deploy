@@ -39,7 +39,7 @@ then
 	
 	echo $'\n' "------ OPTIMIZE DEPLOY -------------------" $'\n'
 	
-	ssh -i /root/.ssh/id_rsa -t $1@$2 "cd $3 && php artisan migrate"
+	ssh -i /root/.ssh/id_rsa -t $1@$2 "cd $3 && php artisan migrate --force"
 	ssh -i /root/.ssh/id_rsa -t $1@$2 "cd $3 && php artisan cache:clear"
 	ssh -i /root/.ssh/id_rsa -t $1@$2 "cd $3 && php artisan config:cache"
 	ssh -i /root/.ssh/id_rsa -t $1@$2 "cd $3 && php artisan queue:restart"
