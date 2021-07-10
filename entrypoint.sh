@@ -45,11 +45,12 @@ then
 	ssh -i /root/.ssh/id_rsa -t $1@$2 "cd $3 && php artisan queue:restart"
 	
 	if [$6]
+	then
 	echo $'\n' "------ RELOAD LIGHTSPEED -------------------" $'\n'
 	
 	ssh -i /root/.ssh/id_rsa -t $1@$2 "brighthub web-restart"
 	
-	then
+	fi
 
 	echo $'\n' "------ CONGRATS! DEPLOY SUCCESSFUL!!! ---------" $'\n'
 	exit 0
