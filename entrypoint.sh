@@ -29,6 +29,18 @@ rsync --progress -avzhI \
 
 if [ $? -eq 0 ]
 then
+	if $6
+	then
+	echo $'\n' "------ SET APPROPIATE PHP BIN -------------------" $'\n'
+	
+	$php=/usr/local/lsws/lsphp74/bin/php7.4
+	
+	else
+	
+	$php=php
+	
+	fi
+
 	echo $'\n' "------ SYNC SUCCESSFUL! -----------------------" $'\n'
 	echo $'\n' "------ RELOADING PERMISSION -------------------" $'\n'
 
@@ -39,12 +51,12 @@ then
 	
 	echo $'\n' "------ OPTIMIZE DEPLOY -------------------" $'\n'
 	
-	ssh -i /root/.ssh/id_rsa -t $1@$2 "cd $3 && php artisan migrate --force"
-	ssh -i /root/.ssh/id_rsa -t $1@$2 "cd $3 && php artisan cache:clear"
-	ssh -i /root/.ssh/id_rsa -t $1@$2 "cd $3 && php artisan config:cache"
-	ssh -i /root/.ssh/id_rsa -t $1@$2 "cd $3 && php artisan queue:restart"
+	ssh -i /root/.ssh/id_rsa -t $1@$2 "cd $3 && $php artisan migrate --force"
+	ssh -i /root/.ssh/id_rsa -t $1@$2 "cd $3 && $php artisan cache:clear"
+	ssh -i /root/.ssh/id_rsa -t $1@$2 "cd $3 && $php artisan config:cache"
+	ssh -i /root/.ssh/id_rsa -t $1@$2 "cd $3 && $php artisan queue:restart"
 	
-	if [$6]
+	if $6
 	then
 	echo $'\n' "------ RELOAD LIGHTSPEED -------------------" $'\n'
 	
