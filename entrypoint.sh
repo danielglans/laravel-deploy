@@ -40,6 +40,8 @@ then
 	$php=php
 	
 	fi
+	
+	echo "daniel php - $php"
 
 	echo $'\n' "------ SYNC SUCCESSFUL! -----------------------" $'\n'
 	echo $'\n' "------ RELOADING PERMISSION -------------------" $'\n'
@@ -60,7 +62,7 @@ then
 	then
 	echo $'\n' "------ RELOAD LIGHTSPEED -------------------" $'\n'
 	
-	ssh -i /root/.ssh/id_rsa -t $1@$2 "brighthub web-restart"
+	ssh -i /root/.ssh/id_rsa -t $1@$2 "/root/.brighthub/brighthub.sh web-restart"
 	
 	fi
 
