@@ -58,7 +58,7 @@ then
 	ssh -i /root/.ssh/id_rsa -t $1@$2 "cd $3 && $php artisan config:cache"
 	ssh -i /root/.ssh/id_rsa -t $1@$2 "cd $3 && $php artisan queue:restart"
 	
-	if $6 == true
+	if [ $6 == true ]
 	then
 	echo $'\n' "------ RELOAD LIGHTSPEED -------------------" $'\n'
 	
