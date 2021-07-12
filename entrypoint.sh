@@ -14,7 +14,7 @@ else
 	echo $'\n' "------ CONFIG SUCCESSFUL! ---------------------" $'\n'
 fi
 
-rsync --progress -avzhI \
+rsync --progress -avzh \
 	--exclude='.git/' \
 	--exclude='.git*' \
 	--exclude='.editorconfig' \
@@ -33,11 +33,11 @@ then
 	then
 	echo $'\n' "------ SET APPROPIATE PHP BIN -------------------" $'\n'
 	
-	$php=/usr/local/lsws/lsphp74/bin/php7.4
+	php=/usr/local/lsws/lsphp74/bin/php7.4
 	
 	else
 	
-	$php=php
+	php=php
 	
 	fi
 	
@@ -54,7 +54,7 @@ then
 	echo $'\n' "------ OPTIMIZE DEPLOY -------------------" $'\n'
 	
 	ssh -i /root/.ssh/id_rsa -t $1@$2 "cd $3 && $php artisan migrate --force"
-	ssh -i /root/.ssh/id_rsa -t $1@$2 "cd $3 && $php artisan cache:clear"
+	ssh -i /root/.ssh/id_rsa -t $1@$2 "cd $3 && $php artisan optimize:clear"
 	ssh -i /root/.ssh/id_rsa -t $1@$2 "cd $3 && $php artisan config:cache"
 	ssh -i /root/.ssh/id_rsa -t $1@$2 "cd $3 && $php artisan queue:restart"
 	
